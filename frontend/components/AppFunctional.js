@@ -42,7 +42,16 @@ export default function AppFunctional(props) {
     // Gridin kenarına ulaşıldığında başka gidecek yer olmadığı için,
     // şu anki indeksi değiştirmemeli.
     const nextIndex = index + yon;
-    if (nextIndex < 0 || nextIndex > 8) {
+    if (yon === -1 && index % 3 === 0) {
+      return index;
+    }
+    if (yon === 1 && index % 3 === 2) {
+      return index;
+    }
+    if (yon === -3 && index < 3) {
+      return index;
+    }
+    if (yon === 3 && index > 5) {
       return index;
     }
     return nextIndex;
@@ -55,16 +64,36 @@ export default function AppFunctional(props) {
     let nextIdx;
     switch (direction) {
       case "left":
-        nextIdx = index % 3 !== 0 ? sonrakiIndex(-1) : index;
+        nextIdx = sonrakiIndex(-1);
+        if (nextIdx === index) {
+          setMessage("Sola gidemezsiniz");
+        } else {
+          setMessage("");
+        }
         break;
       case "up":
-        nextIdx = index > 2 ? sonrakiIndex(-3) : index;
+        nextIdx = sonrakiIndex(-3);
+        if (nextIdx === index) {
+          setMessage("Yukarıya gidemezsiniz");
+        } else {
+          setMessage("");
+        }
         break;
       case "right":
-        nextIdx = index % 3 !== 2 ? sonrakiIndex(1) : index;
+        nextIdx = sonrakiIndex(1);
+        if (nextIdx === index) {
+          setMessage("Sağa gidemezsiniz");
+        } else {
+          setMessage("");
+        }
         break;
       case "down":
-        nextIdx = index < 6 ? sonrakiIndex(3) : index;
+        nextIdx = sonrakiIndex(3);
+        if (nextIdx === index) {
+          setMessage("Aşağıya gidemezsiniz");
+        } else {
+          setMessage("");
+        }
         break;
       default:
         nextIdx = index;
@@ -90,7 +119,7 @@ export default function AppFunctional(props) {
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-        <h3 id="coordinates">{getXYMesaj}</h3>
+        <h3 id="coordinates">{getXYMesaj()}</h3>
         <h3 id="steps">{steps} kere ilerlediniz</h3>
       </div>
       <div id="grid">

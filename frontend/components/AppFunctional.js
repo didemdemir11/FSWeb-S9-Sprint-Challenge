@@ -119,45 +119,56 @@ export default function AppFunctional(props) {
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-        <h3 id="coordinates">{getXYMesaj()}</h3>
-        <h3 id="steps">{steps} kere ilerlediniz</h3>
+        <h3 data-testid="coordinates" id="coordinates">
+          {getXYMesaj()}
+        </h3>
+        <h3 data-testid="steps" id="steps">
+          {steps} kere ilerlediniz
+        </h3>
       </div>
       <div id="grid">
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
-          <div key={idx} className={`square${idx === index ? " active" : ""}`}>
+          <div
+            key={idx}
+            data-testid={`square${idx}`}
+            className={`square${idx === index ? " active" : ""}`}
+          >
             {idx === index ? "B" : null}
           </div>
         ))}
       </div>
       <div className="info">
-        <h3 id="message">{message}</h3>
+        <h3 data-testid="message" id="message">
+          {message}
+        </h3>
       </div>
       <div id="keypad">
-        <button id="left" onClick={ilerle}>
+        <button data-testid="left" id="left" onClick={ilerle}>
           SOL
         </button>
-        <button id="up" onClick={ilerle}>
+        <button data-testid="up" id="up" onClick={ilerle}>
           YUKARI
         </button>
-        <button id="right" onClick={ilerle}>
+        <button data-testid="right" id="right" onClick={ilerle}>
           SAĞ
         </button>
-        <button id="down" onClick={ilerle}>
+        <button data-testid="down" id="down" onClick={ilerle}>
           AŞAĞI
         </button>
-        <button id="reset" onClick={reset}>
+        <button data-testid="reset" id="reset" onClick={reset}>
           reset
         </button>
       </div>
       <form onSubmit={onSubmit}>
         <input
+          data-testid="email-input"
           id="email"
           type="email"
           placeholder="email girin"
           value={email}
           onChange={onChange}
         ></input>
-        <input id="submit" type="submit"></input>
+        <input data-testid="submit" id="submit" type="submit"></input>
       </form>
     </div>
   );

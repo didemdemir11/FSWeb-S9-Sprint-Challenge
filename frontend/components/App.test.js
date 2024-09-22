@@ -8,6 +8,13 @@ describe("AppFunctional Bileşenleri Testleri", () => {
     render(<AppFunctional />);
   });
 });
-test("Başlık ve butonlarda doğru metinler görünüyor", () => {
-  expect(true).toBe(false);
+test("Başlangıçta başlık ve butonlarda doğru metinler görünüyor", () => {
+  expect(screen.getByTestId("coordinates")).toHaveTextContent(
+    "Koordinatlar (2,2)"
+  );
+  expect(screen.getByTestId("steps")).toHaveTextContent("0 kere ilerlediniz");
+  expect(screen.getByText("SOL")).toBeInTheDocument();
+  expect(screen.getByText("YUKARI")).toBeInTheDocument();
+  expect(screen.getByText("SAĞ")).toBeInTheDocument();
+  expect(screen.getByText("AŞAĞI")).toBeInTheDocument();
 });

@@ -124,7 +124,7 @@ export default function AppFunctional(props) {
       </div>
       <div id="grid">
         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((idx) => (
-          <div key={idx} className={`square${idx === 4 ? " active" : ""}`}>
+          <div key={idx} className={`square${idx === index ? " active" : ""}`}>
             {idx === index ? "B" : null}
           </div>
         ))}
